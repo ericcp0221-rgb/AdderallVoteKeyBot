@@ -55,9 +55,9 @@ function createBot(username) {
         }
 
          // rewards GUI
-        await sleep(5000)
+        await sleep(3000)
         bot.chat('/rewards')
-        await sleep(4000)
+        await sleep(2000)
         if (bot.currentWindow) {
           await bot.clickWindow(10, 0, 0) // daily reward kit
           console.log('✔ Clicked reward slot 11')
@@ -112,7 +112,7 @@ async function runAllBots() {
     const randomUsername = generateRandomUsername();  // Random username generation
     console.log(`\n🚀 Starting bot: ${randomUsername}`)
     await createBot(randomUsername)  // Pass the random username to createBot
-    await sleep(5000) // small pause before next
+    await sleep(2000) // small pause before next
   }
   console.log("✅ Finished running all 100 bots")
 }
