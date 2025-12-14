@@ -1,4 +1,4 @@
-// bot9.js
+// bot9.js for multiple ob bots with random usernames
 const mineflayer = require('mineflayer')
 
 const sleep = ms => new Promise(res => setTimeout(res, ms))

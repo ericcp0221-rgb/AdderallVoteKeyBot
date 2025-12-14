@@ -1,3 +1,4 @@
+// Bot for the ob server runs once (debuging for me, just run bot 10 instead).
 const mineflayer = require('mineflayer')
 
 let bot // global bot so all functions can access
