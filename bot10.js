@@ -54,21 +54,44 @@ function createBot(username) {
           }
         }
 
-        // Kits GUI
-        bot.chat('/kits')
-        await sleep(2000)
+         // Kits GUI
+      bot.chat('/kits')
+      await sleep(2000)
+      if (bot.currentWindow) {
+        await bot.clickWindow(20, 0, 0) // 1hr kit
+        console.log('✔ Clicked kit slot 23')
+        await sleep(1000)
         if (bot.currentWindow) {
-          await bot.clickWindow(20, 0, 0)
-          console.log(`[${username}] ✔ Clicked kit slot 23`)
-          await sleep(1000)
-          if (bot.currentWindow) {
-            bot.closeWindow(bot.currentWindow)
-            console.log(`[${username}] ✔ Closed Kits GUI`)
-          }
+          bot.closeWindow(bot.currentWindow)
+          console.log("✔ Closed Kits GUI")
+        } else {
+          console.log("⚠ Kits GUI already closed")
         }
+      } else {
+        console.log('⚠ Kits GUI not open')
+      }
 
-        // Drop specific items
-        await dropSpecificItems(['tripwire_hook'])
+      // rewards GUI
+      bot.chat('/rewards')
+      await sleep(2000)
+      if (bot.currentWindow) {
+        await bot.clickWindow(11, 0, 0) // daily reward kit
+        console.log('✔ Clicked reward slot 11')
+        await sleep(1000)
+        if (bot.currentWindow) {
+          bot.closeWindow(bot.currentWindow)
+          console.log("✔ Closed rewards GUI")
+        } else {
+          console.log("⚠ rewards GUI already closed")
+        }
+      } else {
+        console.log('⚠ rewards GUI not open')
+      }
+
+      // Drop everything except armor/offhand
+      //await dropInventoryWorking({ keepArmor: true, keepOffhand: true })
+      //console.log('✅ Finished dropping inventory (kept armor/offhand)')
+      await dropSpecificItems(['tripwire_hook', 'clock'])
 
         // quit when done
         await sleep(2000)

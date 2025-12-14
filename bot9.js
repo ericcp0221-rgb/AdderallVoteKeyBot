@@ -83,10 +83,27 @@ function createBot() {
         console.log('⚠ Kits GUI not open')
       }
 
+      // rewards GUI
+      bot.chat('/rewards')
+      await sleep(2000)
+      if (bot.currentWindow) {
+        await bot.clickWindow(11, 0, 0) // daily reward kit
+        console.log('✔ Clicked reward slot 11')
+        await sleep(1000)
+        if (bot.currentWindow) {
+          bot.closeWindow(bot.currentWindow)
+          console.log("✔ Closed rewards GUI")
+        } else {
+          console.log("⚠ rewards GUI already closed")
+        }
+      } else {
+        console.log('⚠ rewards GUI not open')
+      }
+
       // Drop everything except armor/offhand
       //await dropInventoryWorking({ keepArmor: true, keepOffhand: true })
       //console.log('✅ Finished dropping inventory (kept armor/offhand)')
-      await dropSpecificItems(['tripwire_hook'])
+      await dropSpecificItems(['tripwire_hook', 'clock'])
 
     } catch (err) {
       console.log('❌ Sequence error:', err)
